@@ -1,0 +1,8 @@
+.io-hero {
+  margin: 0 auto;
+
+  @media (min-width: $breakpoint-mobile-start) {
+    width: calc(100% - 48px);
+    width: clamp(19.5rem, 13.975920679886684rem + 22.6628895184136vw, 29.5rem);
+  }
+}

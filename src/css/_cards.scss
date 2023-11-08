@@ -1,0 +1,52 @@
+$card-size: 338px;
+
+.io-cards {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  gap: $spacing-inline-32;
+
+  @include wider-than($breakpoint-phone-landscape) {
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: flex-start;
+  }
+}
+
+.io-card {
+  display: block;
+  width: min(100%, $card-size);
+  aspect-ratio: 1 / 1;
+  border: 0.5px solid $color-blue-border;
+  border-radius: $border-radius;
+  backdrop-filter: blur(10px);
+  background-image: $gradient-blue-bg;
+  background-repeat: no-repeat;
+  background-position: center;
+  box-shadow: $box-shadow-card;
+  overflow: hidden;
+
+  @include wider-than($breakpoint-phone-landscape) {
+    width: min(33.3%, $card-size);
+  }
+
+  &:first-of-type {
+    background-image: url('../assets/svg/circle-rings.svg'), $gradient-blue-bg;
+    background-repeat: no-repeat, no-repeat;
+    background-position: center, center;
+
+    @include wider-than($breakpoint-phone-landscape) {
+      background-image: $gradient-blue-bg;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+  }
+
+  @include wider-than($breakpoint-phone-landscape) {
+    &:nth-of-type(2) {
+      background-image: url('../assets/svg/circle-rings.svg'), $gradient-blue-bg;
+      background-repeat: no-repeat, no-repeat;
+      background-position: center, center;
+    }
+  }
+}

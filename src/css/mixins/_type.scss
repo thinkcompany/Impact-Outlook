@@ -1,0 +1,15 @@
+@mixin type-display-xl() {
+  font-size: 18vw;
+  font-family: $font-family-display;
+  line-height: 1;
+
+  @include wider-than($breakpoint-mobile-start) {
+    font-size: $font-size-display-xl;
+  }
+}
+
+@mixin type-body-xl() {
+  font-size: 1rem;
+  font-size: $font-size-body-l;
+  font-weight: $font-weight-500;
+}

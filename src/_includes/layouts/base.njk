@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="{{ metadata.language }}">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="{{ metadata.description }}">
+		<meta name="generator" content="{{ eleventy.generator }}">
+		<meta property="og:locale" content="en_us">
+		<meta property="og:type" content="website">
+		<meta property="og:description" content="{{ metadata.description }}">
+		<meta property="og:url" content="{{ metadata.url }}">
+		<meta property="og:site_name" content="{{ metadata.title }}">
+		<title>{{ metadata.title }}</title>
+		<link rel="stylesheet" href="/css/style.css">
+		<link rel="cannonical" href="{{ metadata.url }}">
+	</head>
+	<body>
+		<a href="#main-content" class="io-accessibly-hidden io-skip-link">Skip to main content</a>
+		{{ content | safe }}
+	</body>
+</html>

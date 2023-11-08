@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Newsreader:opsz,wght@6..72,400;6..72,700&display=swap');
+
+$font-family-body: 'Inter', sans-serif;
+$font-family-display: 'Newsreader', serif;
+
+$font-weight-500: 500;
+
+/*
+* Clamp() ideal value calculator
+* https://royalfig.github.io/fluid-typography-calculator/
+*/
+
+$font-size-display-xl: clamp(4.5rem, 2.8427762039660056rem + 6.79886685552408vw, 7.5rem);
+
+$font-size-body-l: clamp(1rem, 0.7237960339943343rem + 1.13314447592068vw, 1.5rem);
