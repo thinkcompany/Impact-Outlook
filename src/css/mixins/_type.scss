@@ -8,6 +8,17 @@
   }
 }
 
+@mixin type-display-m() {
+  font-size: 1.75rem;
+  font-family: $font-family-display;
+  font-weight: 700;
+  line-height: 1;
+
+  @include wider-than($breakpoint-mobile-start) {
+    font-size: $font-size-display-m;
+  }
+}
+
 @mixin type-body-xl() {
   font-size: 1rem;
   font-size: $font-size-body-l;

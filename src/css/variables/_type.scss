@@ -4,6 +4,7 @@ $font-family-body: 'Inter', sans-serif;
 $font-family-display: 'Newsreader', serif;
 
 $font-weight-500: 500;
+$font-weight-700: 700;
 
 /*
 * Clamp() ideal value calculator
@@ -11,5 +12,5 @@ $font-weight-500: 500;
 */
 
 $font-size-display-xl: clamp(4.5rem, 2.8427762039660056rem + 6.79886685552408vw, 7.5rem);
-
+$font-size-display-m: clamp(1.75rem, 1.5428470254957507rem + 0.84985835694051vw, 2.125rem);
 $font-size-body-l: clamp(1rem, 0.7237960339943343rem + 1.13314447592068vw, 1.5rem);

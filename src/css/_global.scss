@@ -19,8 +19,15 @@ body {
   padding: 0 $spacing-inline-24;
 
   .io-container {
-    width: min(100%, #{$container-default});
     margin: 0 auto;
+
+    &.io-container--default {
+      width: min(100%, #{$container-default});
+    }
+
+    &.io-container--small {
+      width: min(100%, #{$container-small});
+    }
   }
 }
 

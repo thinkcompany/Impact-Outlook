@@ -1,8 +1,8 @@
 const { execSync } = require("child_process");
 const pluginBundle = require("@11ty/eleventy-plugin-bundle");
 const { EleventyHtmlBasePlugin } = require("@11ty/eleventy");
-const sass = require("sass");
 const browserslist = require("browserslist");
+const sass = require("sass");
 const { transform, browserslistToTargets } = require("lightningcss");
 const path = require("path");
 const esbuild = require("esbuild");

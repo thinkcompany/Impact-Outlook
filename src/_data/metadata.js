@@ -1,6 +1,6 @@
 module.exports = {
-	title: "SEO Title",
+	title: "Impact Outlook",
 	url: "url",
 	language: "en",
-	description: ""
+	description: "A toolkit for building designed experiences that center humanity."
 }
