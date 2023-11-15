@@ -1,5 +1,7 @@
 .io-hero {
+  position: relative;
   margin: 0 auto;
+  z-index: 1;
 
   @media (min-width: $breakpoint-mobile-start) {
     width: calc(100% - 48px);

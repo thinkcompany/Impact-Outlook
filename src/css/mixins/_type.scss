@@ -19,6 +19,13 @@
   }
 }
 
+@mixin type-display-s() {
+  font-size: $font-size-32;
+  font-family: $font-family-display;
+  font-weight: $font-weight-400;
+  line-height: 1.2;
+}
+
 @mixin type-body-xl() {
   font-size: 1rem;
   font-size: $font-size-body-l;
