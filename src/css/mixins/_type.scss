@@ -20,6 +20,7 @@
 }
 
 @mixin type-display-s() {
+  font-size: 1rem;
   font-size: $font-size-32;
   font-family: $font-family-display;
   font-weight: $font-weight-400;
