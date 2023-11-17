@@ -1,4 +1,10 @@
 $card-size: 338px;
+$button-height: 32px;
+$icon-figma: 128px;
+$icon-io: 176px;
+$icon-io-offset: 6%;
+$icon-figma-offset: -20%;
+$icon-hourglass: 230px;
 
 .io-cards {
   display: flex;
@@ -16,6 +22,7 @@ $card-size: 338px;
 }
 
 .io-card {
+  position: relative;
   display: grid;
   grid-template-rows: 1fr auto;
   grid-template-columns: 1fr;
@@ -34,6 +41,25 @@ $card-size: 338px;
   text-align: center;
   overflow: hidden;
 
+
+
+  &::before,
+  &::after {
+    content: '';
+    display: inline-block;
+    position: absolute;
+    top: 104px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: white;
+  }
+
+  &::after {
+    top: auto;
+    bottom: 104px;
+  }
+
   @include wider-than($breakpoint-phone-landscape) {
     width: min(33.3%, $card-size);
   }
@@ -42,21 +68,32 @@ $card-size: 338px;
     background-image: url('../assets/svg/circle-rings.svg'), $gradient-blue-bg;
     background-repeat: no-repeat, no-repeat;
     background-position: center, center;
+    order: 1;
 
     @include wider-than($breakpoint-phone-landscape) {
       background-image: $gradient-blue-bg;
       background-repeat: no-repeat;
       background-position: center;
+      order: 0;
     }
   }
 
-  @include wider-than($breakpoint-phone-landscape) {
-    &:nth-of-type(2) {
+  &:nth-of-type(2) {
+    order: 0;
+
+    @include wider-than($breakpoint-phone-landscape) {
+      order: 1;
       background-image: url('../assets/svg/circle-rings.svg'), $gradient-blue-bg;
       background-repeat: no-repeat, no-repeat;
       background-position: center, center;
     }
   }
+
+  &:nth-of-type(3) {
+    order: 2;
+  }
+
+
 
   .io-card-title {
     @include type-display-s;
@@ -65,4 +102,51 @@ $card-size: 338px;
   .io-btn {
     align-self: end;
   }
+}
+
+.io-card-content {
+  display: flex;
+
+
+  &::after {
+    content: '';
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 1px;
+    height: 100%;
+    background-color: white;
+  }
+
+
+
+
+  &--filled {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  &--offset {
+    transform: translateY(calc(#{$button-height} / 2)); // centers  content vertically
+  }
+}
+
+.io-icon--io {
+  width: min(60%, #{$icon-io});
+  transform: translateX(#{$icon-io-offset});
+  z-index: 1;
+}
+
+.io-icon--figma {
+  width: min(42%, #{$icon-figma});
+  transform: translateX(#{$icon-figma-offset});
+}
+
+.io-icon--hourglass {
+  width: min(71%, #{$icon-hourglass});
+  margin: auto;
 }
