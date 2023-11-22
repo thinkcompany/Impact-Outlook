@@ -6,6 +6,7 @@ $icon-io-offset: 6%;
 $icon-figma-offset: -20%;
 $icon-hourglass: 230px;
 $card-break: 300px;
+$card-break-b: 260px;
 
 .io-cards {
   display: grid;
@@ -13,12 +14,14 @@ $card-break: 300px;
   grid-template-rows: auto;
   justify-items: center;
   gap: $spacing-inline-32;
-  margin-top: -20px;
-  margin-bottom: -60px;
+  margin-top: -$spacing-stack-20;
+  margin-bottom: -$spacing-stack-50;
 
   @include wider-than($breakpoint-phone-landscape) {
     grid-template-columns: repeat(2, auto);
     grid-template-rows: repeat(2, auto);
+    margin-top: -$spacing-stack-24;
+    margin-bottom: -$spacing-stack-32;
   }
 
   @include wider-than($breakpoint-tablet) {
@@ -41,10 +44,6 @@ $card-break: 300px;
   background-repeat: no-repeat;
   background-position: center;
   box-shadow: $box-shadow-card;
-
-  // @include wider-than($breakpoint-phone-landscape) {
-  //   width: min(33.3%, $card-size);
-  // }
 
   &:first-of-type {
     grid-row: 2;
@@ -120,8 +119,17 @@ $card-break: 300px;
   }
 
   &--offset {
+    // @include wider-than($breakpoint-mobile-start) {
+    //   transform: translateY(calc(#{$button-height} / 2)); // centers  content vertically
+    // }
+    @container card (min-width: #{$card-break-b} ) {
+      transform: translateY(calc(#{$button-height} / 2));
+    }
+  }
+
+  &--offset-b {
     @include wider-than($breakpoint-mobile-start) {
-      transform: translateY(calc(#{$button-height} / 2)); // centers  content vertically
+      transform: translateY(-4px);
     }
   }
 }
