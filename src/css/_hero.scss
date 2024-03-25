@@ -1,3 +1,5 @@
+$duration: 0.4s;
+
 .io-hero {
   position: relative;
   margin: 0 auto;
@@ -6,5 +8,24 @@
   @media (min-width: $breakpoint-mobile-start) {
     width: calc(100% - 48px);
     width: clamp(19.5rem, 13.975920679886684rem + 22.6628895184136vw, 29.5rem);
+  }
+
+  [class*="ring-"] {
+    transform-origin: center;
+    animation: tiltExpand $duration linear forwards paused;
+  }
+
+  .center-group {
+    animation: fadeOut $duration ease-in forwards paused;
+  }
+
+  &.io-is-animating {
+    [class*="ring-"] {
+      animation-play-state: running;
+    }
+
+    .center-group {
+      animation-play-state: running;
+    }
   }
 }
