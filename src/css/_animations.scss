@@ -16,3 +16,41 @@
     opacity: 0;
   }
 }
+
+@keyframes ringUp {
+  0% {
+    transform: translateY(0) rotate3d(1, 0, 0, 66deg);
+  }
+
+  100% {
+    transform: translateY(-22%) rotate3d(1, 0, 0, 56deg);
+  }
+}
+
+@keyframes ringUpBack {
+  0% {
+    transform: translateY(0) rotate3d(1, 0, 0, 66deg);
+  }
+
+  100% {
+    transform: translateY(-22%) rotate3d(1, 0, 0, 56deg);
+  }
+}
+
+@keyframes ringDown {
+  0% {
+    transform: translateY(0) rotate3d(1, 0, 0, 66deg);
+  }
+  100% {
+    transform: translateY(14%) rotate3d(1, 0, 0, 57deg);
+  }
+}
+
+@keyframes ringDownBig {
+  0% {
+    transform: translateY(0) rotate3d(1, 0, 0, 66deg);
+  }
+  100% {
+    transform: translateY(37%) rotate3d(1, 0, 0, 60deg);
+  }
+}
