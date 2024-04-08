@@ -1,5 +1,8 @@
-$duration: 0.75s;
-$keyframe-delay: $duration * 1.25;
+$durationA: 0.75s;
+$durationB: calc($durationA * 0.4);
+$durationC: calc($durationA * 0.3);
+$durationD: calc($durationA * 0.7);
+$stage-delay: $durationA * 1.35;
 $timing-fn: cubic-bezier(0.18,0.89,0.25,1.12);
 
 .io-hero {
@@ -7,48 +10,93 @@ $timing-fn: cubic-bezier(0.18,0.89,0.25,1.12);
   margin: 0 auto;
   z-index: 1;
   overflow: visible;
-  border: 1px solid white;
 
   @media (min-width: $breakpoint-mobile-start) {
-    //width: calc(100% - 48px);
     width: clamp(19.5rem, 13.975920679886684rem + 22.6628895184136vw, 29.5rem);
   }
 
   svg {
+    display: block;
     overflow: visible;
+    perspective: 800px;
   }
 
   [class*="ring-"] {
     transform-origin: center;
-    animation: tiltExpand $duration $timing-fn forwards paused;
+    animation: tiltExpand $durationA $timing-fn forwards paused;
   }
 
   .ring-outer {
+    transform: translateY(0) rotate3d(1, 0, 0, 0);
     animation:
-      tiltExpand $duration $timing-fn forwards paused,
-      ringUp $duration $timing-fn $keyframe-delay forwards paused;
+      tiltExpand $durationA $timing-fn forwards paused,
+      outerRingUp $durationA $timing-fn $stage-delay forwards paused;
   }
 
   .ring-middle {
+    transform: translateY(0) rotate3d(1, 0, 0, 0);
     animation:
-      tiltExpand $duration $timing-fn forwards paused,
-      ringDown $duration $timing-fn $keyframe-delay forwards paused;;
+      tiltExpand $durationA $timing-fn forwards paused,
+      middleRingDown $durationA $timing-fn $stage-delay forwards paused;
   }
 
   .ring-inner {
     animation:
-      tiltExpand $duration $timing-fn forwards paused,
-      ringDownBig $duration $timing-fn $keyframe-delay forwards paused;
+      tiltExpand $durationA $timing-fn forwards paused,
+      innerRingDown $durationA $timing-fn $stage-delay forwards paused;
   }
 
   .center-group {
-    animation: fadeOut calc($duration * 0.7) linear forwards paused;
+    animation: fadeOut $durationD linear forwards paused;
+  }
+
+  [class*="clone-"] {
+    opacity: 0;
+  }
+
+  .clone-outer {
+    transform-origin: top;
+    animation: outerRingReverse $durationB linear forwards paused;
+  }
+
+  .clone-middle {
+    transform-origin: bottom;
+    animation: middleRingReverse $durationB linear forwards paused;
   }
 
   &.io-is-animating-a {
     [class*="ring-"],
     .center-group {
       animation-play-state: running;
+    }
+  }
+
+
+  &.io-is-animating-b {
+    .clone-outer,
+    .clone-middle {
+      animation-play-state: running;
+    }
+
+    .ring-inner {
+      animation: innerRingReverse $durationC linear both;
+    }
+
+    .center-group {
+      animation: fadeIn $durationD linear forwards;
+    }
+  }
+
+  &.io-ring-change {
+    .clone-middle,
+    .clone-outer {
+      opacity: 1;
+    }
+
+    .ring-outer,
+    .ring-middle {
+      opacity: 0;
+      animation: none;
     }
   }
 }

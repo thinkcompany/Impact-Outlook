@@ -1,12 +1,5 @@
-
-@keyframes tiltExpand {
-  0% {
-    transform: rotate3d(0, 0, 0, 0);
-  }
-  100% {
-    transform: rotate3d(1, 0, 0, 66deg);
-  }
-}
+$tilt: 66deg;
+$tiltB: 56deg;
 
 @keyframes fadeOut {
   0% {
@@ -17,40 +10,77 @@
   }
 }
 
-@keyframes ringUp {
+@keyframes fadeIn {
   0% {
-    transform: translateY(0) rotate3d(1, 0, 0, 66deg);
+    opacity: 0;
   }
-
   100% {
-    transform: translateY(-22%) rotate3d(1, 0, 0, 56deg);
+    opacity: 1;
   }
 }
 
-@keyframes ringUpBack {
+@keyframes tiltExpand {
   0% {
-    transform: translateY(0) rotate3d(1, 0, 0, 66deg);
+    transform: translateY(0) rotate3d(1, 0, 0, 0);
   }
-
   100% {
-    transform: translateY(-22%) rotate3d(1, 0, 0, 56deg);
+    transform: translateY(0) rotate3d(1, 0, 0, $tilt);
   }
 }
 
-@keyframes ringDown {
+@keyframes outerRingUp {
   0% {
-    transform: translateY(0) rotate3d(1, 0, 0, 66deg);
+    transform: translateY(0) rotate3d(1, 0, 0, $tilt);
   }
+
   100% {
-    transform: translateY(14%) rotate3d(1, 0, 0, 57deg);
+    transform: translateY(-22%) rotate3d(1, 0, 0, $tiltB);
   }
 }
 
-@keyframes ringDownBig {
+@keyframes middleRingDown {
   0% {
-    transform: translateY(0) rotate3d(1, 0, 0, 66deg);
+    transform: translateY(0) rotate3d(1, 0, 0, $tilt);
+  }
+  100% {
+    transform: translateY(14%) rotate3d(1, 0, 0, $tiltB);
+  }
+}
+
+@keyframes innerRingDown {
+  0% {
+    transform: translateY(0) rotate3d(1, 0, 0, $tilt);
   }
   100% {
     transform: translateY(37%) rotate3d(1, 0, 0, 60deg);
+  }
+}
+
+@keyframes innerRingReverse {
+  0% {
+    transform: translateY(37%) rotate3d(1, 0, 0, 60deg);
+  }
+  100% {
+    transform: translateY(0) rotate3d(1, 0, 0, 0);
+  }
+}
+
+@keyframes outerRingReverse {
+  0% {
+    transform: rotateX($tiltB);
+  }
+
+  100% {
+    transform: rotateX(0);
+  }
+}
+
+@keyframes middleRingReverse {
+  0% {
+    transform: rotateX($tiltB) translateY(-14%);
+  }
+
+  100% {
+    transform: rotateX(0) translateY(0);
   }
 }
