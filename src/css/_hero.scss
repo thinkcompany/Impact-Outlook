@@ -56,11 +56,13 @@ $timing-fn: cubic-bezier(0.18,0.89,0.25,1.12);
 
   .clone-outer {
     transform-origin: top;
+    transform: rotateX(56deg);
     animation: outerRingReverse $durationB linear forwards paused;
   }
 
   .clone-middle {
     transform-origin: bottom;
+    transform: rotateX(56deg) translateY(-14%);
     animation: middleRingReverse $durationB linear forwards paused;
   }
 
@@ -79,7 +81,7 @@ $timing-fn: cubic-bezier(0.18,0.89,0.25,1.12);
     }
 
     .ring-inner {
-      animation: innerRingReverse $durationC linear both;
+      animation: innerRingReverse $durationC linear forwards;
     }
 
     .center-group {
@@ -96,7 +98,7 @@ $timing-fn: cubic-bezier(0.18,0.89,0.25,1.12);
     .ring-outer,
     .ring-middle {
       opacity: 0;
-      animation: none;
+      animation: initial;
     }
   }
 }

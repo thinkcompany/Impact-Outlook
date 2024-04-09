@@ -10,38 +10,62 @@ const ioHome = () => {
   let isAnimating = false;
   let animationStep = 0;
 
+  const setCloneAnimation = (animationName) => {
+    const cloneOuter = container.querySelector('.clone-outer');
+    const cloneMiddle = container.querySelector('.clone-middle');
+
+    // Setting the custom property
+    cloneOuter.style.setProperty('--animation-name', animationName);
+    cloneMiddle.style.setProperty('--animation-name', animationName);
+
+    if (animationName === 'none') {
+      // Remove class if animation should be stopped/reset
+      cloneOuter.classList.remove('is-animating');
+      cloneMiddle.classList.remove('is-animating');
+    } else {
+      // Add class to start animation
+      cloneOuter.classList.add('is-animating');
+      cloneMiddle.classList.add('is-animating');
+    }
+  };
+
   const handleHeroAnimationClick = () => {
-    console.log("animationStep", animationStep);
-    console.log("isAnimating", isAnimating);
     if (!isAnimating && animationStep === 0) {
-      isAnimating = true;
       container.classList.remove(animationClassB);
       container.classList.add(animationClassA);
+      isAnimating = true;
       animationStep = 1;
+      setCloneAnimation("none");
+
+      console.log("step 0 -> 1 | isAnimating", isAnimating);
 
     } else if (!isAnimating && animationStep === 1) {
-      isAnimating = true;
       container.classList.add(animationClassB);
+      isAnimating = true;
       animationStep = 0;
+
+      console.log("step 1 -> 0 | isAnimating", isAnimating);
     }
   };
 
   const handleInitialAnimationEnd = (event) => {
-    console.log("event.animationName", event.animationName);
     if (event.animationName === "outerRingUp") {
       container.classList.remove(animationClassA);
       container.classList.add(ringChangeClass);
+      setCloneAnimation("outerRingReverse");
       isAnimating = false;
+      console.log("initial animationend | step:", animationStep);
     }
   };
 
   const handleSecondaryAnimationEnd = (event) => {
     if (event.animationName === "fadeIn") {
-      console.log("end fadeIn");
-      isAnimating = false;
-      animationStep = 0;
       container.classList.remove(animationClassB);
       container.classList.remove(ringChangeClass);
+      isAnimating = false;
+      animationStep = 0;
+
+      console.log("____animation step 2 complete_____");
     }
   };
 
