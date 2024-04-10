@@ -52,18 +52,20 @@ $timing-fn: cubic-bezier(0.18,0.89,0.25,1.12);
 
   [class*="clone-"] {
     opacity: 0;
+    animation-name: none;
+    animation-duration: $durationB;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
   }
 
   .clone-outer {
     transform-origin: top;
     transform: rotateX(56deg);
-    animation: outerRingReverse $durationB linear forwards paused;
   }
 
   .clone-middle {
     transform-origin: bottom;
     transform: rotateX(56deg) translateY(-14%);
-    animation: middleRingReverse $durationB linear forwards paused;
   }
 
   &.io-is-animating-a {
@@ -77,7 +79,7 @@ $timing-fn: cubic-bezier(0.18,0.89,0.25,1.12);
   &.io-is-animating-b {
     .clone-outer,
     .clone-middle {
-      animation-play-state: running;
+      animation-name: var(--animation-name, none); // Fallback to 'none'
     }
 
     .ring-inner {

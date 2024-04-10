@@ -1,4 +1,4 @@
-import { executeWhenReady, modalFocusTrap } from "./_utils.js";
+import { executeWhenReady } from "./_utils.js";
 
 const ioHome = () => {
   const container = document.querySelector(".io-hero");
@@ -10,41 +10,32 @@ const ioHome = () => {
   let isAnimating = false;
   let animationStep = 0;
 
-  const setCloneAnimation = (animationName) => {
+  const setCloneAnimation = (animationNameOuter, animationNameMiddle) => {
     const cloneOuter = container.querySelector('.clone-outer');
     const cloneMiddle = container.querySelector('.clone-middle');
 
-    // Setting the custom property
-    cloneOuter.style.setProperty('--animation-name', animationName);
-    cloneMiddle.style.setProperty('--animation-name', animationName);
+    cloneOuter.style.setProperty('--animation-name', animationNameOuter);
+    cloneMiddle.style.setProperty('--animation-name', animationNameMiddle);
 
-    if (animationName === 'none') {
-      // Remove class if animation should be stopped/reset
-      cloneOuter.classList.remove('is-animating');
-      cloneMiddle.classList.remove('is-animating');
+    if (animationNameOuter === "none" || animationNameMiddle === "none") {
+      container.classList.remove(animationClassB);
     } else {
-      // Add class to start animation
-      cloneOuter.classList.add('is-animating');
-      cloneMiddle.classList.add('is-animating');
+      container.classList.add(animationClassB);
     }
   };
 
   const handleHeroAnimationClick = () => {
     if (!isAnimating && animationStep === 0) {
-      container.classList.remove(animationClassB);
       container.classList.add(animationClassA);
+      container.classList.remove(animationClassB);
       isAnimating = true;
       animationStep = 1;
-      setCloneAnimation("none");
-
-      console.log("step 0 -> 1 | isAnimating", isAnimating);
 
     } else if (!isAnimating && animationStep === 1) {
       container.classList.add(animationClassB);
+      setCloneAnimation("outerRingReverse", "middleRingReverse");
       isAnimating = true;
       animationStep = 0;
-
-      console.log("step 1 -> 0 | isAnimating", isAnimating);
     }
   };
 
@@ -52,9 +43,8 @@ const ioHome = () => {
     if (event.animationName === "outerRingUp") {
       container.classList.remove(animationClassA);
       container.classList.add(ringChangeClass);
-      setCloneAnimation("outerRingReverse");
+      setCloneAnimation("none", "none");
       isAnimating = false;
-      console.log("initial animationend | step:", animationStep);
     }
   };
 
@@ -64,8 +54,6 @@ const ioHome = () => {
       container.classList.remove(ringChangeClass);
       isAnimating = false;
       animationStep = 0;
-
-      console.log("____animation step 2 complete_____");
     }
   };
 
