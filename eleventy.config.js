@@ -1,28 +1,41 @@
-const { execSync } = require("child_process");
-const pluginBundle = require("@11ty/eleventy-plugin-bundle");
-const { EleventyHtmlBasePlugin } = require("@11ty/eleventy");
-const browserslist = require("browserslist");
-const sass = require("sass");
-const { transform, browserslistToTargets } = require("lightningcss");
-const path = require("path");
-const esbuild = require("esbuild");
+/*
+	Eleventy config
+	https://www.11ty.dev/docs/config/
+*/
 
-module.exports = function(eleventyConfig) {
-	eleventyConfig.addTemplateFormats("scss");
+import { browserslistToTargets, transform } from 'lightningcss';
+import * as sass from 'sass';
+import path from 'path';
+import browserslist from 'browserslist';
+import esbuild from 'esbuild';
+
+export default (eleventyConfig) => {
+	// make sure Eleventy knows to process file types with addTemplateFormats
+  eleventyConfig.addTemplateFormats("scss");
 	eleventyConfig.addTemplateFormats("js");
-	eleventyConfig.addPassthroughCopy("src/assets");
+	eleventyConfig.addTemplateFormats("json");
+	eleventyConfig.addTemplateFormats("svg");
 
-	// Do Sass and Lightning CSS compilation
+	/*
+		addPassthroughCopy tells Eleventy to copy files or directories to the output folder
+		addPassthroughCopy can take a directory, file, or glob pattern
+	*/
+  eleventyConfig.addPassthroughCopy("src/assets/js/fontfaceobserver.standalone.js");
+
+	/*
+		CSS processing
+		Transpile with Lightning CSS https://lightningcss.dev/
+		Read more about CSS and Lightning https://11ty.rocks/posts/process-css-with-lightningcss/
+	*/
 	eleventyConfig.addExtension("scss", {
 		outputFileExtension: "css",
 		compile: async function (inputContent, inputPath) {
 			let parsed = path.parse(inputPath);
-			// Skip files starting with _
+
 			if (parsed.name.startsWith("_")) {
 				return;
 			}
 
-			// Run file content through Sass
 			let result = sass.compileString(inputContent, {
 				loadPaths: [parsed.dir || "."],
 				sourceMap: false,
@@ -33,10 +46,10 @@ module.exports = function(eleventyConfig) {
 
 			let targets = browserslistToTargets(browserslist("> 0.2% and not dead"));
 
-			// Run the CSS through Lightning CSS
 			return async () => {
-				let { code } = await transform({
+				let { code } = transform({
 					filename: 'style.css',
+          entryPoints: [path],
 					code: Buffer.from(result.css),
 					minify: true,
 					sourceMap: false,
@@ -47,10 +60,11 @@ module.exports = function(eleventyConfig) {
 		},
 	});
 
-	eleventyConfig.addExtension('js', {
+	// JavaScript compilation
+  eleventyConfig.addExtension('js', {
 		outputFileExtension: 'js',
 		compile: async (content, path) => {
-			if (path !== './src/js/index.js') {
+			if (path !== './src/assets/js/index.js') {
 				return;
 			}
 
@@ -68,40 +82,39 @@ module.exports = function(eleventyConfig) {
 		}
 	});
 
-	// Watch targets
+	eleventyConfig.on("eleventy.before", ({ runMode }) => {
+		// Set the environment variable
+		if (runMode === "serve" || runMode === "watch") {
+			process.env.BUILD_DRAFTS = true;
+		}
+	});
+
+	/*
+		Watch targets
+		By default Eleventy will watch for template changes, but depending on your configuration additional watch targets may be necessary
+		Run `npm run debug` to view current watch targets
+	*/
 	eleventyConfig.addWatchTarget("src/assets/**/*.{svg,webp,png,jpeg}");
-	eleventyConfig.addWatchTarget("/src/css/*.scss");
-	eleventyConfig.addWatchTarget("/src/js/*.js");
+	eleventyConfig.addWatchTarget("/src/assets/css/*.scss");
+	eleventyConfig.addWatchTarget("/src/assets/js/*.js");
 
-	// Official plugins
-	eleventyConfig.addPlugin(EleventyHtmlBasePlugin);
-	eleventyConfig.addPlugin(pluginBundle);
+	/*
+		Other config options
+		Make changes to default directory structure
+		See this post for a deeper look into directory architecture https://www.njfamirm.ir/en/blog/eleventy-folder-structure-guide/
+		Specify template engine options
+		https://www.11ty.dev/docs/languages/
+	*/
 
-	// Filters
-
-	return {
-		// Control which files Eleventy will process
-		// e.g.: *.md, *.njk, *.html, *.liquid
-		templateFormats: [
-			"md",
-			"njk",
-			"html",
-			"liquid",
-		],
-
-		// Pre-process *.md files with: (default: `liquid`)
+  return {
+    dir: {
+      input: "src",
+      output: "dist",
+			includes: "_includes",
+    },
+		templateFormats: [ "md", "njk", "html", "liquid"],
 		markdownTemplateEngine: "njk",
-
-		// Pre-process *.html files with: (default: `liquid`)
-		htmlTemplateEngine: "njk",
-
-		// These are all optional:
-		dir: {
-			input: "src",          // default: "."
-			includes: "_includes",  // default: "_includes"
-			data: "_data",          // default: "_data"
-			output: "_site"
-		},
-		pathPrefix: "/",
-	};
-};
+    htmlTemplateEngine: "njk", // Allows us to use Nunjucks in HTML files
+    dataTemplateEngine: "njk",
+  };
+}

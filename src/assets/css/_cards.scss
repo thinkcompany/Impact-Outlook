@@ -55,7 +55,7 @@ $card-break-b: 260px;
 
   &:nth-of-type(2) {
     grid-row: 1;
-    background-image: url('../assets/svg/circle-rings.svg'), $gradient-blue-bg;
+    background-image: url('/assets/svg/circle-rings.svg'), $gradient-blue-bg;
     background-repeat: no-repeat, no-repeat;
     background-position: center, center;
 

@@ -12,9 +12,8 @@ $header-padding-top-mobile: calc($spacing-stack-64 / $breakpoint-mobile-start * 
 }
 
 .io-title {
-  @include type-display-xl;
   margin-bottom: $spacing-stack-20;
-
+  @include type-display-xl;
 }
 
 .io-description {

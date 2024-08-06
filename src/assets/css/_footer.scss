@@ -23,8 +23,8 @@
 }
 
 .io-footer-title {
-  @include type-display-m;
   margin-bottom: $spacing-stack-12;
+  @include type-display-m;
 
   @include wider-than($breakpoint-tablet) {
     margin-bottom: $spacing-stack-20;
