@@ -82,13 +82,6 @@ export default (eleventyConfig) => {
 		}
 	});
 
-	eleventyConfig.on("eleventy.before", ({ runMode }) => {
-		// Set the environment variable
-		if (runMode === "serve" || runMode === "watch") {
-			process.env.BUILD_DRAFTS = true;
-		}
-	});
-
 	/*
 		Watch targets
 		By default Eleventy will watch for template changes, but depending on your configuration additional watch targets may be necessary

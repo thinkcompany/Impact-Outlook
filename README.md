@@ -1,15 +1,14 @@
-# Think Company Eleventy Starter
+# Impact Outlook
 
-Think Company Eleventy Starter
-Welcome to the Think Company Eleventy Starter, a minimalistic and efficient starter template designed to help you quickly build static sites using Eleventy. This starter kit includes additional features to streamline your Eleventy journey:
+Welcome to the Impact Outlook repository! Impact Outlook is built on the [Think Company Eleventy starter](https://github.com/thinkcompany/Eleventy-Starter), which is a minimalistic and efficient starter multipurpose repo designed to quickly build sites using the static site generator [Eleventy](https://www.11ty.dev/). Features to streamline your Eleventy journey:
 
 - Sass to CSS Processing: Write modular, maintainable CSS with Sass.
 - CSS Transpilation with Lightning CSS: Enjoy modern CSS features and optimizations.
 - JavaScript Bundling and Minification: Efficiently bundle and minify your JavaScript with esbuild.
-- Simple Blog Functionality: Quickly set up a blog with minimal configuration.
-- Built-in Navigation: Utilize the built-in navigation support to easily manage site menus and links.
 
-This project leverages a canary version of Eleventy for ESM support. For client-related work, it's recommended to use the latest stable build (2.0.x).
+This project leverages a canary version of Eleventy for ESM support.
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/ad54b302-e18d-4bf2-9c58-3893952296f8/deploy-status)](https://app.netlify.com/sites/dapper-cranachan-1d50b8/deploys)
 
 ## Table of Contents
 
