@@ -109,7 +109,7 @@ export default (eleventyConfig) => {
   return {
     dir: {
       input: "src",
-      output: "dist",
+      output: "_site",
 			includes: "_includes",
     },
 		templateFormats: [ "md", "njk", "html", "liquid"],
