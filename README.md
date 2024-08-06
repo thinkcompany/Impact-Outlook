@@ -1,6 +1,6 @@
 # Impact Outlook
 
-Welcome to the Impact Outlook repository! Impact Outlook is built on the [Think Company Eleventy starter](https://github.com/thinkcompany/Eleventy-Starter), which is a minimalistic and efficient starter multipurpose repo designed to quickly build sites using the static site generator [Eleventy](https://www.11ty.dev/). Features to streamline your Eleventy journey:
+Welcome to the Impact Outlook repository! Impact Outlook is built on the [Think Company Eleventy starter](https://github.com/thinkcompany/Eleventy-Starter), which is a minimalistic and efficient starter multipurpose repo designed to quickly build sites using the static site generator [Eleventy](https://www.11ty.dev/). Some features to streamline your Eleventy journey:
 
 - Sass to CSS Processing: Write modular, maintainable CSS with Sass.
 - CSS Transpilation with Lightning CSS: Enjoy modern CSS features and optimizations.
@@ -24,14 +24,14 @@ This project leverages a canary version of Eleventy for ESM support.
 1. Make a directory and go there
 
 ```bash
-mkdir my-cool-site
-cd my-cool-site
+mkdir impact-outlook
+cd impact-outlook
 ```
 
 2. Clone this repository
 
 ```bash
-git clone https://github.com/thinkcompany/Eleventy-Starter.git .
+git clone https://github.com/thinkcompany/Impact-Outlook .
 ```
 
 3. Install dependencies
@@ -71,15 +71,59 @@ but it is entirely configurable. The structure of this project has been modified
 return {
   dir: {
     input: "src",
-    output: "dist",
+    output: "_site",
     includes: "_includes",
   },
   ...
 };
 ```
 
+## Content
+- Some site content is managed as front matter in `src/index.html`
+- Card CTA text can be found at `src/_includes/components/cards.html`
+- Footer paragraphs can be found at `src/_includes/footer.html`
 
-## Key Concepts
+## Deployment
+This repo is configured to *automatically deploy to Netlify whenever a commit is merged into the `main` branch*. There are essentially 2 way to merge code into `main`, and therefore two options for deployment from local to production. Regardless, of your choice, ensure you have the latest code from Github:
+```bash
+git pull origin main
+```
+
+### 1. Pull Request Workflow
+On your local machine, checkout a new branch. Replace `branch-name` with the name of your branch
+```bash
+git checkout -b branch-name
+```
+Before publishing your local work, it needs to be committed to the git repository. But first, it's never a bad idea do a git sanity check:
+```bash
+git status
+```
+You will see a list of files that have been modified, added, or deleted since the last commit. If a file has been changed that shouldn't have been, or you don't want to commit for whatever reason, in most cases you can run `git rm <filename>` to remove it. Git typically provides instructions following prompts, so keep an eye out for those.
+
+If everything looks good and you are ready to create a pull request, add, commit, and push to github
+```bash
+  git add -A
+  git commit -m "a commit message goes here"
+  git push origin branch-name
+```
+
+Git will respond with a url you can follow to open the pull request in the Github gui, or head straight to the [Github PR screen](https://github.com/thinkcompany/Impact-Outlook/pulls) where you will see a UI element prompting you to create a pr.
+
+From there you can add an optional message and hit the 'create pull request' button. Once created, git runs a check to see if the pr can be safely merged into the `main` branch. Once confirmed, a `merge` button becomes enabled. Smashing that button kicks off a deployment to production (Netlify).
+
+Alternately, you can tag someone to review the code, or just save the pull request so that the work is backed-up (add a label so other know not to merge it).
+
+### 2. Work directly on main (aka living on the edge)
+Instead of creating a new branch when working locally, you can work directly on the `main` branch. The workflow is basically the same. Once your local work is ready, running the following will merge your local work into the remote repository (Github) *and* kick off a deployment to Netlify:
+
+```bash
+  git add -A
+  git commit -m "a commit message goes here"
+  git push origin main
+```
+
+
+## Eleventy - Key Concepts
 
 ### Templates
 Files that define the structure and layout of your project. **Key features of templates:**
