@@ -1,6 +1,7 @@
 @mixin button-primary {
   position: relative;
   padding: $spacing-stack-8 $spacing-inline-16;
+  margin-top: $spacing-stack-16;
   font-size: $font-size-14;
   font-weight: $font-weight-700;
   color: $color-white;
@@ -34,7 +35,7 @@
 @mixin button-secondary {
   position: relative;
   padding: $spacing-stack-8 $spacing-inline-16;
-  margin-top: $spacing-stack-8;
+  margin-top: $spacing-stack-16;
   font-size: $font-size-14;
   font-weight: $font-weight-700;
   color: $color-white;
