@@ -5,3 +5,7 @@
 .io2-btn {
   @include button-secondary;
 }
+
+.io3-btn {
+  @include button-promo;
+}
