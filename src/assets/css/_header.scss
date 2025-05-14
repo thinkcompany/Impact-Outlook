@@ -3,8 +3,10 @@ $header-padding-top-mobile: calc($spacing-stack-64 / $breakpoint-mobile-start * 
 
 .io-header {
   padding-top: $spacing-stack-64;
+  padding-bottom: $spacing-stack-64;
   color: $color-white;
   text-align: center;
+  
 
   @include wider-than($breakpoint-mobile-start) {
     padding-top: min($header-padding-top-mobile, $header-padding-top);
