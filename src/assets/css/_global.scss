@@ -8,6 +8,11 @@ body {
   font-size: 1rem;
 }
 
+a:hover {
+  text-decoration-color: $color-blue;
+  text-decoration-style: double;
+}
+
 .io-accessibly-hidden,
 %accessibly-hidden {
   position: absolute;
