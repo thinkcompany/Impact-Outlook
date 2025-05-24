@@ -20,6 +20,12 @@
     color: $color-white;
     font-weight: $font-weight-700;
   }
+  
+  a:hover {
+    text-decoration-color: $color-blue;
+    text-decoration-style: double;
+  }
+  
 }
 
 .io-footer-title {
